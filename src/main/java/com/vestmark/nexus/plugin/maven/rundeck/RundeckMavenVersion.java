@@ -15,8 +15,8 @@ package com.vestmark.nexus.plugin.maven.rundeck;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-import com.vestmark.nexus.plugin.maven.NexusAsset;
 import com.vestmark.nexus.plugin.maven.MavenVersion;
+import com.vestmark.nexus.plugin.maven.NexusAsset;
 
 public class RundeckMavenVersion
     implements Comparable<RundeckMavenVersion>, Serializable

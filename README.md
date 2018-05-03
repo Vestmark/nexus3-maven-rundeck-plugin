@@ -1,7 +1,7 @@
 # Nexus Repository Manager 3 Maven/Rundeck Plugin
 A NXRM3 Plugin which adds REST endpoints to
 * Search & Retrieve artifacts using Maven GAV parameters
-* Search & Retrieve artifacts with the LATEST version keyword
+* Retrieve artifacts using the LATEST keyword for the version
 * Maven-style version [Rundeck Option Model Provider](http://rundeck.org/docs/manual/jobs.html#option-model-provider)
 
 ## Endpoints
@@ -63,7 +63,7 @@ A NXRM3 Plugin which adds REST endpoints to
 
 ### `/maven/rundeck/versions` (GET)
 * Returns an array of versions in the [Rundeck Option Model Provider](http://rundeck.org/docs/manual/jobs.html#option-model-provider) format
-* The name will contain the time of the latest asset found, sorted descending by last updated (most recent)
+* The name will contain the time of the latest asset found, sorted lexicographically
 
 ##### Query Parameters
 | Query Parameter | Description | Default | Required |
@@ -72,7 +72,6 @@ A NXRM3 Plugin which adds REST endpoints to
 | r | The name of the repository to search | | False |
 | g | The GAV group id | | False |
 | a | The GAV artifact id | | False |
-| v | The GAV version, LATEST keyword is supported | | False |
 | c | The Maven classifier | | False |
 | e | The Maven extension | | False |
 

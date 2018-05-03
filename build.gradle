@@ -1,0 +1,43 @@
+plugins {
+  id 'java'
+  id 'osgi'
+  id 'eclipse'
+  id 'idea'
+  id 'com.diffplug.gradle.spotless' version '3.10.0'
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencies {
+  compile "org.sonatype.nexus:nexus-plugin-api:${nexusVersion}"
+  compile "org.sonatype.nexus:nexus-repository:${nexusVersion}"
+  compile "org.sonatype.nexus:nexus-rest:${nexusVersion}"
+}
+
+sourceCompatibility = 1.8
+
+jar {
+  manifest {
+    name = project.name
+    instruction 'Bundle-Vendor', 'Vestmark'
+    instruction 'Bundle-Description', 'Nexus3 Maven/Rundeck REST Utilities'
+    instruction 'Bundle-DocURL', 'https://github.com/Vestmark/nexus3-maven-rundeck-plugin'
+  }
+}
+
+spotless {
+  java {
+    licenseHeaderFile 'gradle/resources/apache2_header.java'
+    importOrderFile 'gradle/resources/vestmark.importorder'
+    removeUnusedImports()
+    eclipse().configFile 'gradle/resources/vestmark_format.xml'
+  }
+  groovyGradle {
+    target '**/*.gradle'
+    importOrderFile 'gradle/resources/vestmark.importorder'
+    greclipse().configFile 'gradle/resources/vestmark_format.xml'
+  }
+}

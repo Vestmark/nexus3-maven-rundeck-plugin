@@ -151,7 +151,7 @@ public abstract class BaseMavenResource
       MavenVersion existing = versionMap.computeIfAbsent(baseVersion, MavenVersion::new);
       String assetVersion = (String) hit.getSource().get("version");
       Date lastModified = getLastModified(attributes);
-      existing.addAsset(new AssetVersion(assetVersion, lastModified));
+      existing.addAsset(new NexusAsset(assetVersion, lastModified));
     }
     return versionMap.values().stream().sorted().collect(Collectors.toList());
   }

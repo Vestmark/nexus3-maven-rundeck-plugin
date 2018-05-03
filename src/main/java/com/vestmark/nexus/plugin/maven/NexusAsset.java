@@ -14,13 +14,13 @@ package com.vestmark.nexus.plugin.maven;
 
 import java.util.Date;
 
-public class AssetVersion
+public class NexusAsset
 {
 
   private String version;
   private Date lastUpdated;
 
-  public AssetVersion(String version, Date lastUpdated)
+  public NexusAsset(String version, Date lastUpdated)
   {
     this.version = version;
     this.lastUpdated = lastUpdated;

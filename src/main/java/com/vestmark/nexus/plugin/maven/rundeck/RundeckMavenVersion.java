@@ -15,7 +15,7 @@ package com.vestmark.nexus.plugin.maven.rundeck;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-import com.vestmark.nexus.plugin.maven.AssetVersion;
+import com.vestmark.nexus.plugin.maven.NexusAsset;
 import com.vestmark.nexus.plugin.maven.MavenVersion;
 
 public class RundeckMavenVersion
@@ -31,7 +31,7 @@ public class RundeckMavenVersion
   RundeckMavenVersion(MavenVersion mavenVersion)
   {
     value = mavenVersion.getBaseVersion();
-    AssetVersion latestAsset = mavenVersion.getAssets().first();
+    NexusAsset latestAsset = mavenVersion.getAssets().first();
     if (latestAsset != null && latestAsset.getLastUpdated() != null) {
       name = String
           .format("%s (%s)", mavenVersion.getBaseVersion(), lastUpdatedFormat.format(latestAsset.getLastUpdated()));

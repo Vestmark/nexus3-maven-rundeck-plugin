@@ -20,7 +20,7 @@ public class MavenVersion
     implements Comparable<MavenVersion>
 {
 
-  private static final Comparator<AssetVersion> assetComparator = (o1, o2) -> {
+  private static final Comparator<NexusAsset> assetComparator = (o1, o2) -> {
     if (o1.getLastUpdated() == null) {
       if (o2.getLastUpdated() == null) {
         return 0;
@@ -34,7 +34,7 @@ public class MavenVersion
   };
 
   private final String baseVersion;
-  private SortedSet<AssetVersion> assets;
+  private SortedSet<NexusAsset> assets;
 
   public MavenVersion(String baseVersion)
   {
@@ -46,7 +46,7 @@ public class MavenVersion
     return baseVersion;
   }
 
-  public SortedSet<AssetVersion> getAssets()
+  public SortedSet<NexusAsset> getAssets()
   {
     if (assets == null) {
       assets = new TreeSet<>(assetComparator);
@@ -54,7 +54,7 @@ public class MavenVersion
     return assets;
   }
 
-  public void addAsset(AssetVersion version)
+  public void addAsset(NexusAsset version)
   {
     getAssets().add(version);
   }

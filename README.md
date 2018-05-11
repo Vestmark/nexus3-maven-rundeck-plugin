@@ -86,9 +86,29 @@ A NXRM3 Plugin which adds REST endpoints to
 ```
 
 ## Deployment
-### Simple
-1. Drop the jar into the nexus (karaf) deploy dir
-   * This directory is located under the nexus home dir, ie: `/opt/nexus/deploy`
+### Persistent
+1. Deliver the jar to `{NEXUS_HOME}/system/com/vestmark/nexus/plugins/nexus3-maven-rundeck-plugin-${version}.jar`
+2. Add an entry to the karaf `profile.cfg` referencing the nexus3-maven-rundeck-plugin bundle
+   * `{NEXUS_HOME}/etc/karaf/profile.cfg`
+   * ```properties
+     bundle.mvn\:com.vestmark.nexus.plugins/nexus3-maven-rundeck-plugin/${version} = mvn:com.vestmark.nexus.plugins/nexus3-maven-rundeck-plugin/${version}
+     ```   
+3. Add an entry to the karaf `startup.properties` to specify the bundle level
+   * `{NEXUS_HOME}/etc/karaf/startup.properties`
+   * ```properties
+     reference\:file\:com/vestmark/nexus/plugins/nexus3-maven-rundeck-plugin-${version}.jar = 200
+     ```
+4. Start/Restart Nexus
+5. Confirm that the bundle has been deployed and is active
+   * Nexus Administrator > System > Bundles > nexus3-maven-rundeck-plugin > State = Active
+ 
+
+### Automatic
+Use the following instructions to deploy for testing & development.
+
+__Note__ this process is dependent on packages being available upon deployment of the bundle. As such, rebooting will likely result in the bundle loading prior to the dependent packages, placing it in the *installed* state, rather than the *active* state.
+1. Deliver the jar to the nexus (karaf) deploy dir
+   * `{NEXUS_HOME}/deploy`
 2. Confirm that the bundle has been deployed and is active
    * Nexus Administrator > System > Bundles > nexus3-maven-rundeck-plugin > State = Active
 

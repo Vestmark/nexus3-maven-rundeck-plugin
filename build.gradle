@@ -25,7 +25,6 @@ jar {
     instruction 'Bundle-Vendor', 'Vestmark'
     instruction 'Bundle-Description', 'Nexus3 Maven/Rundeck REST Utilities'
     instruction 'Bundle-DocURL', 'https://github.com/Vestmark/nexus3-maven-rundeck-plugin'
-//    instruction 'Import-Package', 'com.google.*;version="1.0"'
   }
 }
 

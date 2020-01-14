@@ -118,7 +118,7 @@ public abstract class BaseMavenResource
       log.debug("searchMavenArtifacts query: {}", query);
     }
 
-    SearchResponse response = searchService.search(
+    SearchResponse response = searchService.searchUnrestricted(
         query,
         Collections
             .singletonList(new FieldSortBuilder("assets.attributes.content.last_modified").order(SortOrder.DESC)),

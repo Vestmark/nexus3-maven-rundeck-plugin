@@ -184,6 +184,11 @@ public class MavenResource
       response.header(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment;filename=\"%s\"", fileName));
       return response.build();
     }
+    catch (Exception e) {
+      log.debug("Exception: {}", e.toString());
+      storageTx.rollback();
+      return null;
+    }
     finally {
       if (storageTx != null) {
         if (storageTx.isActive()) {

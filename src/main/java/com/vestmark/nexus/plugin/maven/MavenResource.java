@@ -186,6 +186,14 @@ public class MavenResource
     }
     catch (RuntimeException e) {
       log.error("storageTx response exception: {}", e.toString());
+      log.error(
+          "assetString: {}",
+          String.format(
+              "%s-%s%s.%s",
+              artifactId,
+              version,
+              StringUtils.isBlank(classifier) ? "" : "-" + classifier,
+              extension));
       storageTx.rollback();
       throw e;
     }

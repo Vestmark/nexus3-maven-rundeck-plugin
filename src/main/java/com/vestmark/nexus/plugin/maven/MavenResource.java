@@ -186,7 +186,7 @@ public class MavenResource
       return response.build();
     }
     catch (RuntimeException e) {
-      log.error("storageTx response exception: {}", e.toString());
+      log.error("storageTx response exception: ", e);
       log.error(
           "asset info: {}",
           String.format(

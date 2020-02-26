@@ -107,7 +107,9 @@ public class MavenResource
     try {
       storageTx = storageTxSupplier.get();
       storageTx.begin();
-      storageTx.getDb().activateOnCurrentThread();
+      if (!storageTx.getDb().isActiveOnCurrentThread()) {
+        storageTx.getDb().activateOnCurrentThread();
+      }
       SearchResponse searchResponse = searchMavenArtifacts(
           repositoryName,
           groupId,
@@ -188,15 +190,8 @@ public class MavenResource
     catch (RuntimeException e) {
       log.error("storageTx response exception: ", e);
       log.error(
-          "asset info: {}",
-          String.format(
-              "%s %s %s-%s%s.%s",
-              repositoryName,
-              groupId,
-              artifactId,
-              version,
-              StringUtils.isBlank(classifier) ? "" : "-" + classifier,
-              extension));
+          "query params:" + repositoryName + ", " + groupId + ", " + artifactId + ", " + version
+              + (StringUtils.isBlank(classifier) ? "" : "-") + "," + extension);
       storageTx.rollback();
       throw e;
     }

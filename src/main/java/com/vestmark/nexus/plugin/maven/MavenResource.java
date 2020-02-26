@@ -190,12 +190,12 @@ public class MavenResource
     catch (RuntimeException e) {
       log.error("storageTx response exception: ", e);
       log.error(
-          "query params: %s, %s, %s, %s, %s, %s",
+          "query params: {} {} {}-{}{}.{}",
           repositoryName,
           groupId,
           artifactId,
           version,
-          (StringUtils.isBlank(classifier) ? "" : "-"),
+          StringUtils.isBlank(classifier) ? "" : "-" + classifier,
           extension);
       storageTx.rollback();
       throw e;

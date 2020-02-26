@@ -191,7 +191,7 @@ public class MavenResource
       log.error("storageTx response exception: ", e);
       log.error(
           "query params:" + repositoryName + ", " + groupId + ", " + artifactId + ", " + version
-              + (StringUtils.isBlank(classifier) ? "" : "-") + "," + extension);
+              + (StringUtils.isBlank(classifier) ? "" : "-") + ", " + extension);
       storageTx.rollback();
       throw e;
     }

@@ -107,6 +107,9 @@ public class MavenResource
     try {
       storageTx = storageTxSupplier.get();
       storageTx.begin();
+      if (!storageTx.getDb().isActiveOnCurrentThread()) {
+        storageTx.getDb().activateOnCurrentThread();
+      }
       SearchResponse searchResponse = searchMavenArtifacts(
           repositoryName,
           groupId,
@@ -183,6 +186,19 @@ public class MavenResource
           extension);
       response.header(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment;filename=\"%s\"", fileName));
       return response.build();
+    }
+    catch (RuntimeException e) {
+      log.error("storageTx response exception: ", e);
+      log.error(
+          "query params: {} {} {}-{}{}.{}",
+          repositoryName,
+          groupId,
+          artifactId,
+          version,
+          StringUtils.isBlank(classifier) ? "" : "-" + classifier,
+          extension);
+      storageTx.rollback();
+      throw e;
     }
     finally {
       if (storageTx != null) {

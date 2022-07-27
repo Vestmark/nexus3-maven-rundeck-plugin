@@ -26,7 +26,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.sonatype.nexus.repository.manager.RepositoryManager;
-import org.sonatype.nexus.repository.search.SearchService;
+import org.sonatype.nexus.repository.search.ElasticSearchService;
 
 import com.vestmark.nexus.plugin.maven.BaseMavenResource;
 
@@ -38,7 +38,7 @@ public class RundeckMavenResource
 {
 
   @Inject
-  public RundeckMavenResource(SearchService searchService, RepositoryManager repositoryManager)
+  public RundeckMavenResource(ElasticSearchService searchService, RepositoryManager repositoryManager)
   {
     super(searchService, repositoryManager);
   }

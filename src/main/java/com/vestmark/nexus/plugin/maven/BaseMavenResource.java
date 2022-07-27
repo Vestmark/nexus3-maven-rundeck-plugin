@@ -30,7 +30,7 @@ import org.sonatype.goodies.common.ComponentSupport;
 import org.sonatype.nexus.repository.Repository;
 import org.sonatype.nexus.repository.group.GroupFacet;
 import org.sonatype.nexus.repository.manager.RepositoryManager;
-import org.sonatype.nexus.repository.search.SearchService;
+import org.sonatype.nexus.repository.search.ElasticSearchService;
 import org.sonatype.nexus.rest.Resource;
 
 @SuppressWarnings("unchecked")
@@ -46,10 +46,10 @@ public abstract class BaseMavenResource
   protected static final String CONTENT = "content";
   protected static final String LAST_MODIFIED = "last_modified";
 
-  protected final SearchService searchService;
+  protected final ElasticSearchService searchService;
   protected final RepositoryManager repositoryManager;
 
-  protected BaseMavenResource(SearchService searchService, RepositoryManager repositoryManager)
+  protected BaseMavenResource(ElasticSearchService searchService, RepositoryManager repositoryManager)
   {
     this.searchService = searchService;
     this.repositoryManager = repositoryManager;

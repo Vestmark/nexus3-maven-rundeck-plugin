@@ -37,7 +37,7 @@ import org.sonatype.nexus.blobstore.api.Blob;
 import org.sonatype.nexus.repository.Repository;
 import org.sonatype.nexus.repository.group.GroupFacet;
 import org.sonatype.nexus.repository.manager.RepositoryManager;
-import org.sonatype.nexus.repository.search.SearchService;
+import org.sonatype.nexus.repository.search.ElasticSearchService;
 import org.sonatype.nexus.repository.storage.Asset;
 import org.sonatype.nexus.repository.storage.Query;
 import org.sonatype.nexus.repository.storage.StorageFacet;
@@ -62,7 +62,7 @@ public class MavenResource
   private static final String BLOBSTORE_CONTENT_TYPE = "BlobStore.content-type";
 
   @Inject
-  public MavenResource(SearchService searchService, RepositoryManager repositoryManager)
+  public MavenResource(ElasticSearchService searchService, RepositoryManager repositoryManager)
   {
     super(searchService, repositoryManager);
   }
